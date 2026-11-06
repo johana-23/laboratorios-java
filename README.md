@@ -19,6 +19,8 @@ Repositorio: <https://github.com/johana-23/laboratorios-java>
 | [`laboratorio-04`](laboratorio-04/) | Colecciones, historial (`Movimiento`), reportes, excepciones y `MiBilleteraJava` | Completado |
 | [`java-lab-06`](java-lab-06/) | JDK/JRE/JVM, compilacion y ejecucion, Stack, Heap, referencias y paso de parametros | completado 
 
+|[`petmatch-lab`](laboratorio 07) |PetMatch Mini, aplicacion web con Spring Boot, Spring MVC y Thymeleaf| completado
+
 ## Contenido de `java-lab-06`
 
 | Carpeta | Tema | Archivos principales |
@@ -68,5 +70,51 @@ no el `.java`.
 
 - Cada laboratorio se agrega como una carpeta nueva; no se reescriben los anteriores.
 - `java-lab-06` se incorpora igual que los demas: como carpeta nueva en la raiz.
+
+
+Contenido de petmatch-lab (Laboratorio 07)
+
+Aplicacion web de un catalogo de mascotas organizada en capas (Spring Boot 4.1.2, Java 21, Maven).
+
+Parte	Archivos	Funcion
+controller	HomeController, PetController	Reciben las peticiones HTTP y eligen la vista
+service	PetService	Intermediario entre el controlador y los datos
+repository	InMemoryPetRepository	Lista de mascotas en memoria y busqueda por id
+model	Pet	Datos de una mascota (id, nombre, especie, edad, descripcion)
+templates	home, about, pets/list, pets/detail, fragments/head, fragments/navigation	Paginas Thymeleaf y fragmentos reutilizables
+static/css	application.css	Estilos de la aplicacion
+test	PetServiceTests, PetmatchLabApplicationTests	Pruebas automatizadas
+
+Rutas disponibles:
+
+Ruta	Que muestra
+/	Pagina de inicio
+/about	Acerca de
+/pets	Catalogo de mascotas
+/pets/{id}	Detalle de una mascota (responde 404 si el id no existe)
+Instrucciones de ejecucion
+
+Requisito: JDK 21 o superior. Antes de empezar se comprueba con:
+
+java -version
+javac -version
+
+Para que el bytecode generado sea compatible con Java 21 aunque el equipo tenga un JDK mas nuevo, se puede compilar con javac --release 21 ....
+
+
+petmatch-lab (Laboratorio 07, se usa Maven Wrapper; en Windows se escribe mvnw.cmd en lugar de ./mvnw):
+
+cd "petmatch-lab - 1/petmatch-lab"
+./mvnw test
+./mvnw spring-boot:run
+
+Luego se abre http://localhost:8080 en el navegador.
+
+Como se conserva la evolucion
+Cada laboratorio se agrega como una carpeta nueva; no se reescriben los anteriores.
+java-lab-06 y petmatch-lab se incorporan igual que los demas: como carpetas nuevas en la raiz.
+Los archivos generados (target/, .vscode/, HELP.md) no se suben: los excluye el .gitignore del proyecto.
+
+
 
 Cada carpeta tiene su propio `README.md` con el detalle del laboratorio.
