@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Catálogo | PetMatch Mini')}"></head>
+<body>
+    <nav th:replace="~{fragments/navigation :: navigation}"></nav>
+
+    <main class="page-container">
+        <header class="page-header">
+            <div>
+                <h1>Catálogo de mascotas</h1>
+                <p class="page-intro">Consulta y administra las mascotas del catálogo.</p>
+            </div>
+            <a class="button-link" th:href="@{/pets/new}">
+                Registrar mascota
+            </a>
+        </header>
+
+        <p class="success-message" role="status"
+           th:if="${successMessage}"
+           th:text="${successMessage}"></p>
+
+        <form class="search-form" th:action="@{/pets}" method="get">
+            <label for="species">Buscar por especie</label>
+            <input id="species" name="species" type="text"
+                   placeholder="Ej. Gato" th:value="${species}">
+            <button type="submit" class="button-link">Buscar</button>
+            <a class="secondary-link" th:href="@{/pets}">Limpiar búsqueda</a>
+        </form>
+
+        <section class="content-panel" th:if="${pets.isEmpty()}">
+            <h2 th:text="${searching} ? 'No se encontraron mascotas' : 'El catálogo está vacío'">
+                Sin resultados
+            </h2>
+            <p th:text="${searching} ? 'No hay mascotas registradas de esa especie. Intenta con otra búsqueda.' : 'Registra una mascota para comenzar.'">
+                No hay resultados.
+            </p>
+            <a class="button-link" th:if="${!searching}" th:href="@{/pets/new}">Registrar mascota</a>
+            <a class="secondary-link" th:if="${searching}" th:href="@{/pets}">Ver todo el catálogo</a>
+        </section>
+
+        <section class="pet-grid" aria-label="Lista de mascotas"
+                 th:unless="${pets.isEmpty()}">
+            <article class="pet-card" th:each="pet : ${pets}">
+                <h2 th:text="${pet.name}">Nombre</h2>
+                <p>Especie: <span th:text="${pet.species}">Especie</span></p>
+                <p>Edad: <span th:text="${pet.age}">0</span> años</p>
+
+                <div class="form-actions">
+                    <a class="button-link"
+                       th:href="@{/pets/{id}(id=${pet.id})}">Ver detalle</a>
+                    <a class="secondary-link"
+                       th:href="@{/pets/{id}/edit(id=${pet.id})}">Editar</a>
+                </div>
+
+                <form method="post" class="delete-form"
+                      th:action="@{/pets/{id}/delete(id=${pet.id})}">
+                    <button type="submit" class="danger-button">
+                        Eliminar
+                        <span class="visually-hidden"
+                              th:text="' ' + ${pet.name}"></span>
+                    </button>
+                </form>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
