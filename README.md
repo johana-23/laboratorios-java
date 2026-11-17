@@ -18,8 +18,13 @@ Repositorio: <https://github.com/johana-23/laboratorios-java>
 | [`Laboratorio-3`](Laboratorio-3/) | POO: clases y objetos (`Seccion_3_1` a `Seccion_3_5`) | Completado |
 | [`laboratorio-04`](laboratorio-04/) | Colecciones, historial (`Movimiento`), reportes, excepciones y `MiBilleteraJava` | Completado |
 | [`java-lab-06`](java-lab-06/) | JDK/JRE/JVM, compilacion y ejecucion, Stack, Heap, referencias y paso de parametros | completado 
+|[`petmatch-lab`](laboratorio 07/) |PetMatch Mini, aplicacion web con Spring Boot, Spring MVC y Thymeleaf| completado
+8	petmatch-lab - 8	HTTP, formularios y DTO (PetForm)	Completado
+9	petmatch-lab - 9	Persistencia con MariaDB, JPA, Hibernate y Spring Data JPA	Completado
+10	petmatch-lab - 10	Relaciones 1:N (Pet y SupportRequest), enums, transacciones y errores 404/409	Completado
+11	petmatch-lab - 11	Registro, autenticación y autorización con Spring Security (roles USER y ADMIN, CSRF)	Completado
+12	petmatch-lab - 12	API REST con JSON bajo /api/v1/, validación y seguridad	Completado
 
-|[`petmatch-lab`](laboratorio 07) |PetMatch Mini, aplicacion web con Spring Boot, Spring MVC y Thymeleaf| completado
 
 ## Contenido de `java-lab-06`
 
@@ -102,7 +107,30 @@ javac -version
 Para que el bytecode generado sea compatible con Java 21 aunque el equipo tenga un JDK mas nuevo, se puede compilar con javac --release 21 ....
 
 
-petmatch-lab (Laboratorio 07, se usa Maven Wrapper; en Windows se escribe mvnw.cmd en lugar de ./mvnw):
+Proyecto PetMatch Mini (laboratorios 7 a 12)
+
+Los laboratorios 7 a 12 trabajan sobre el mismo proyecto, petmatch-lab, que crece en cada carpeta (Spring Boot 4.1.2, Java 21, Maven). Cada carpeta guarda cómo quedó el proyecto al terminar ese laboratorio.
+
+Laboratorio	Qué se agrega	Documento de respuestas
+7	Catálogo de mascotas en capas: controller, service, repository, model y vistas Thymeleaf	README.md de la raíz
+8	Formularios HTTP (GET y POST), DTO PetForm y pruebas de integración	Definiciones_8.md
+9	Base de datos MariaDB con JPA, Hibernate y Spring Data JPA	Definiciones_9.md
+10	Solicitudes de apoyo (SupportRequest) ligadas a cada mascota, enums y transacciones	Definiciones_10.md
+11	Spring Security: registro, inicio de sesión, roles y protección de rutas	Definicion-11.md
+12	API REST en /api/v1/ que recibe y entrega JSON	Definicion-12.md
+
+Estructura básica del proyecto:
+
+Parte	Función
+controller	Reciben las peticiones HTTP y eligen la vista
+service	Intermediario entre el controlador y los datos; aquí viven las reglas
+repository	Acceso a los datos de las mascotas
+model	Clases del dominio (por ejemplo Pet)
+templates	Páginas Thymeleaf y fragmentos reutilizables
+static/css	Estilos de la aplicación
+test	Pruebas automatizadas
+
+petmatch-lab (Laboratorios se usa Maven Wrapper; en Windows se escribe mvnw.cmd en lugar de ./mvnw):
 
 cd "petmatch-lab - 1/petmatch-lab"
 ./mvnw test
