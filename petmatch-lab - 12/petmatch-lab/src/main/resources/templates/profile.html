@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Mi perfil | PetMatch Mini')}"></head>
+<body>
+<nav th:replace="~{fragments/navigation :: navigation}"></nav>
+<main class="page-container">
+    <section class="content-panel">
+        <h1>Mi perfil</h1>
+        <dl>
+            <dt>Nombre</dt><dd th:text="${profile.displayName}">Nombre visible</dd>
+            <dt>Correo electrónico</dt><dd th:text="${profile.email}">correo@example.com</dd>
+            <dt>Rol</dt><dd th:text="${profile.role}">USER</dd>
+        </dl>
+        <a th:href="@{/pets}">Volver a mascotas</a>
+    </section>
+</main>
+</body>
+</html>
